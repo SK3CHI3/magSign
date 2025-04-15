@@ -5,13 +5,7 @@ import Page from "./components/pages/Page";
 import NotFound from "./components/pages/NotFound";
 //react
 import { useState, createContext, useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 //js
 import Cookies from "js-cookie";
 

@@ -6,7 +6,7 @@ import google from "../assets/icons/google.svg";
 import Input from "./Input";
 import UIToggler from "./UiToggler";
 //react
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signin = (props) => {
@@ -67,7 +67,7 @@ const Signin = (props) => {
     }
   };
 
-  const { turnLeft, walk, start, stop, started, facingRight } = props.animation;
+  const { turnLeft, walk, start, stop, started } = props.animation;
 
   const slide = () => {
     props.setFacingRight(true);

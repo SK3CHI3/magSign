@@ -15,13 +15,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 const STATE_MACHINE_NAME = "State Machine 1";
 
 const Page = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     if (location.pathname === "/") {
-      navigate("/signin",{replace: true})
+      navigate("/signin", { replace: true });
     }
-  }, []);
+  }, [location.pathname, navigate]);
 
   const [facingRight, setFacingRight] = useState(false);
 
@@ -66,34 +66,6 @@ const Page = () => {
     STATE_MACHINE_NAME,
     "faceRight"
   );
-  // const stateTurnR = useStateMachineInput(
-  //   rive,
-  //   STATE_MACHINE_NAME,
-  //   "turnR"
-  // );
-
-  // const stateTurnL = useStateMachineInput(
-  //   rive,
-  //   STATE_MACHINE_NAME,
-  //   "turnL"
-  // );
-  // const stateWalkLeft = useStateMachineInput(
-  //   rive,
-  //   STATE_MACHINE_NAME,
-  //   "walkLeft"
-  // );
-
-  // const boolWalk = useStateMachineInput(
-  //   rive,
-  //   STATE_MACHINE_NAME,
-  //   "walk"
-  // );
-
-  // const stateWalkLeft = useStateMachineInput(
-  //   rive,
-  //   STATE_MACHINE_NAME,
-  //   "walkLeft"
-  // );
 
   const triggerStart = (value) => {
     stateStart.value = value;
@@ -113,7 +85,7 @@ const Page = () => {
       triggerWalk(stateMachine.walk);
       triggerFaceRight(stateMachine.faceRight);
     }
-    if(stateWalkMobile){
+    if (stateWalkMobile) {
       triggerStartMobile(stateMachine.start);
       triggerWalkMobile(stateMachine.walk);
     }
@@ -156,9 +128,7 @@ const Page = () => {
     }));
   };
 
-
-  useEffect(()=>{
-    console.log(location.pathname)
+  useEffect(() => {
     if (location.pathname === "/signup") {
       setFacingRight(true);
       if (!stateMachine.start) start();
@@ -166,7 +136,7 @@ const Page = () => {
         stop();
         turnLeft();
       }, 2900);
-    }else if(location.pathname === "/signin"){
+    } else if (location.pathname === "/signin") {
       setFacingRight(false);
       if (!stateMachine.start) start();
       setTimeout(() => {
@@ -174,7 +144,7 @@ const Page = () => {
         turnRight();
       }, 2900);
     }
-  },[rive,rive2])
+  }, [rive, rive2, location.pathname, stateMachine.start, start, stop, turnLeft, turnRight]);
 
   return (
     <div className="page-container">
@@ -234,7 +204,7 @@ const Page = () => {
             start,
             stop,
             started: stateMachine.start,
-            facingRight
+            facingRight,
           }}
         />
       </div>
