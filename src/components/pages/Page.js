@@ -5,7 +5,7 @@ import animation from "../../assets/animation/Bird.riv";
 //components
 import Signin from "../Signin";
 //react
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Signup from "../Signup";
 //rive
 import { useRive, useStateMachineInput } from "@rive-app/react-canvas";
@@ -17,14 +17,8 @@ const STATE_MACHINE_NAME = "State Machine 1";
 const Page = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (location.pathname === "/") {
-      navigate("/signin", { replace: true });
-    }
-  }, [location.pathname, navigate]);
-
+  
   const [facingRight, setFacingRight] = useState(false);
-
   const [stateMachine, setStateMachine] = useState({
     start: true,
     walk: true,
@@ -46,38 +40,83 @@ const Page = () => {
   });
 
   const stateStartMobile = useStateMachineInput(rive2, STATE_MACHINE_NAME, "start");
-
   const stateWalkMobile = useStateMachineInput(rive2, STATE_MACHINE_NAME, "walk");
-
-  const triggerStartMobile = (value) => {
-    stateStartMobile.value = value;
-  };
-
-  const triggerWalkMobile = (value) => {
-    stateWalkMobile.value = value;
-  };
-
   const stateStart = useStateMachineInput(rive, STATE_MACHINE_NAME, "start");
-
   const stateWalk = useStateMachineInput(rive, STATE_MACHINE_NAME, "walk");
+  const stateFaceRight = useStateMachineInput(rive, STATE_MACHINE_NAME, "faceRight");
 
-  const stateFaceRight = useStateMachineInput(
-    rive,
-    STATE_MACHINE_NAME,
-    "faceRight"
-  );
+  const triggerStartMobile = useCallback((value) => {
+    if (stateStartMobile) {
+      stateStartMobile.value = value;
+    }
+  }, [stateStartMobile]);
 
-  const triggerStart = (value) => {
-    stateStart.value = value;
-  };
+  const triggerWalkMobile = useCallback((value) => {
+    if (stateWalkMobile) {
+      stateWalkMobile.value = value;
+    }
+  }, [stateWalkMobile]);
 
-  const triggerWalk = (value) => {
-    stateWalk.value = value;
-  };
+  const triggerStart = useCallback((value) => {
+    if (stateStart) {
+      stateStart.value = value;
+    }
+  }, [stateStart]);
 
-  const triggerFaceRight = (value) => {
-    stateFaceRight.value = value;
-  };
+  const triggerWalk = useCallback((value) => {
+    if (stateWalk) {
+      stateWalk.value = value;
+    }
+  }, [stateWalk]);
+
+  const triggerFaceRight = useCallback((value) => {
+    if (stateFaceRight) {
+      stateFaceRight.value = value;
+    }
+  }, [stateFaceRight]);
+
+  const start = useCallback(() => {
+    setStateMachine((prevState) => ({
+      ...prevState,
+      start: true,
+    }));
+  }, []);
+
+  const walk = useCallback(() => {
+    setStateMachine((prevState) => ({
+      ...prevState,
+      walk: true,
+    }));
+  }, []);
+
+  const stop = useCallback(() => {
+    setStateMachine((prevState) => ({
+      ...prevState,
+      walk: false,
+    }));
+  }, []);
+
+  const turnLeft = useCallback(() => {
+    setStateMachine((prevState) => ({
+      ...prevState,
+      walk: false,
+      faceRight: true,
+    }));
+  }, []);
+
+  const turnRight = useCallback(() => {
+    setStateMachine((prevState) => ({
+      ...prevState,
+      walk: false,
+      faceRight: false,
+    }));
+  }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/signin", { replace: true });
+    }
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     if (stateWalk) {
@@ -89,44 +128,16 @@ const Page = () => {
       triggerStartMobile(stateMachine.start);
       triggerWalkMobile(stateMachine.walk);
     }
-  }, [stateMachine, stateWalk, stateWalkMobile, triggerStart, triggerWalk, triggerWalkMobile, triggerFaceRight]);
-
-  const start = () => {
-    setStateMachine((prevState) => ({
-      ...prevState,
-      start: true,
-    }));
-  };
-
-  const walk = () => {
-    setStateMachine((prevState) => ({
-      ...prevState,
-      walk: true,
-    }));
-  };
-
-  const stop = () => {
-    setStateMachine((prevState) => ({
-      ...prevState,
-      walk: false,
-    }));
-  };
-
-  const turnLeft = () => {
-    setStateMachine((prevState) => ({
-      ...prevState,
-      walk: false,
-      faceRight: true,
-    }));
-  };
-
-  const turnRight = () => {
-    setStateMachine((prevState) => ({
-      ...prevState,
-      walk: false,
-      faceRight: false,
-    }));
-  };
+  }, [
+    stateMachine,
+    stateWalk,
+    stateWalkMobile,
+    triggerStart,
+    triggerWalk,
+    triggerWalkMobile,
+    triggerFaceRight,
+    triggerStartMobile
+  ]);
 
   useEffect(() => {
     if (location.pathname === "/signup") {
