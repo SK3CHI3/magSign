@@ -89,7 +89,7 @@ const Page = () => {
       triggerStartMobile(stateMachine.start);
       triggerWalkMobile(stateMachine.walk);
     }
-  }, [stateMachine]);
+  }, [stateMachine, stateWalk, stateWalkMobile, triggerStart, triggerWalk, triggerWalkMobile, triggerFaceRight]);
 
   const start = () => {
     setStateMachine((prevState) => ({
@@ -144,7 +144,7 @@ const Page = () => {
         turnRight();
       }, 2900);
     }
-  }, [rive, rive2, location.pathname, stateMachine.start, start, stop, turnLeft, turnRight]);
+  }, [location.pathname, stateMachine.start, start, stop, turnLeft, turnRight]);
 
   return (
     <div className="page-container">

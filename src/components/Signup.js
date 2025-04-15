@@ -1,7 +1,5 @@
 //css
 import "../styles/signup.css";
-//assets
-import google from "../assets/icons/google.svg";
 //components
 import Input from "./Input";
 import UIToggler from "./UiToggler";
