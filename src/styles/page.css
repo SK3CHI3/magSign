@@ -1,0 +1,280 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
+}
+
+.card-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    width: 55rem;
+    height: 40rem;
+    border-radius: 0.3rem;
+    z-index: 100;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    row-gap: 1rem;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: var(--surface-color);
+    z-index: 1000;
+    transform: all 400ms linear;
+    padding: 4rem;
+}
+
+.one-piece {
+    position: absolute;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    background-color: transparent;
+    width: 55rem;
+    padding: 0 1rem 0 4rem;
+    z-index: 10000;
+}
+
+.animation-container {
+    position: relative;
+    align-self: flex-start;
+    display: flex;
+    transition: all 3000ms linear;
+    background-color: transparent;
+    width: min-content;
+}
+
+.slider .title {
+    text-align: center;
+    color: var(--onsurface-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.slider .text {
+    text-align: center;
+    color: var(--onsurface-color);
+    width: 25rem;
+}
+
+.slide-right {
+    animation: slide-right 3000ms forwards;
+}
+
+.slide-left {
+    animation: slide-left 3000ms forwards;
+}
+
+.ani-right {
+    animation: ani-right 3000ms forwards;
+}
+
+.ani-left {
+    animation: ani-left 3000ms forwards;
+}
+
+@keyframes slide-right {
+    0% {
+        width: 50%;
+    }
+
+    30% {
+        width: 100%;
+        left: 0;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    70% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 50%;
+        left: 50%;
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        width: 50%;
+        left: 50%;
+    }
+
+    30% {
+        width: 100%;
+        left: 0;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+    }
+
+    70% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 50%;
+        left: 0%;
+    }
+}
+
+@keyframes ani-right {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 55%;
+    }
+}
+
+@keyframes ani-left {
+    0% {
+        left: 55%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+.mobile-slider {
+    display: none;
+}
+
+@media only screen and (max-width: 685px) {
+    .card-container {
+        width: 25rem;
+        border-radius: 1rem;
+        flex-direction: column-reverse;
+        overflow-y: hidden;
+    }
+
+    .one-piece {
+        display: none;
+    }
+
+    .slider {
+        display: none;
+    }
+
+    .mobile-slider {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        row-gap: 1rem;
+        position: absolute;
+        top: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--surface-color);
+        z-index: 1000;
+        transform: all 400ms linear;
+        padding: 4rem;
+    }
+
+    .mobile-slider .title {
+        text-align: center;
+        color: var(--onsurface-color);
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .mobile-slider .text {
+        text-align: center;
+        color: var(--onsurface-color);
+        width: 25rem;
+    }
+
+    .slide-top {
+        animation: slide-top 3000ms forwards;
+    }
+
+    .slide-bottom {
+        animation: slide-bottom 3000ms forwards;
+    }
+
+    .signup-container,
+    .signin-container {
+        position: absolute;
+        width: 100% !important;
+        background-color: var(--background-color) !important;
+    }
+
+    .card-container:has(.slide-top) .signup-container {
+        animation: vanish 3000ms forwards;
+    }
+
+    .card-container:has(.slide-bottom) .signin-container {
+        animation: vanish 3000ms forwards;
+    }
+
+    .card-container:has(.slide-top) .signin-container {
+        animation: appear 3000ms forwards;
+    }
+
+    .card-container:has(.slide-bottom) .signup-container {
+        animation: appear 3000ms forwards;
+    }
+
+    @keyframes slide-top {
+        0% {
+            top: 100%;
+        }
+
+        100% {
+            top: -100%;
+        }
+    }
+
+    @keyframes slide-bottom {
+        0% {
+            top: -100%;
+        }
+
+        100% {
+            top: 100%;
+        }
+    }
+
+    @keyframes vanish {
+        0% {
+            z-index: 200;
+        }
+
+        100% {
+            z-index: 100;
+        }
+    }
+
+    @keyframes appear {
+        0% {
+            z-index: 100;
+        }
+
+        100% {
+            z-index: 200;
+        }
+    }
+
+}
