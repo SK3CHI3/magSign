@@ -131,20 +131,5 @@ Custom 404 page for undefined routes:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- [Rive](https://rive.app/) for the amazing animation system
-- [React](https://reactjs.org/) for the frontend framework
-- [Express](https://expressjs.com/) for the backend framework
-- [MongoDB](https://www.mongodb.com/) for the database
-
-## Contact
-
-Your Name - [Your Email]
-
-Project Link: [repository-url]
-
 ---
 
-Built with ❤️ using React, Node.js, and Rive
