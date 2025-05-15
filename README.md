@@ -20,7 +20,7 @@ A modern, responsive authentication system built with React and Node.js, featuri
 
 - **Security**
   - Password encryption
-  - Protected routes
+  - Protected routes 
   - Input validation and sanitization
   - Secure session management 
 
