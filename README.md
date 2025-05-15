@@ -16,7 +16,7 @@ A modern, responsive authentication system built with React and Node.js, featuri
   - Smooth transitions and animations using Rive
   - Responsive design for all device sizes
   - Dark/Light theme toggle
-  - Interactive error handling with visual feedback
+  - Interactive error handling with visual feedback.
 
 - **Security**
   - Password encryption
