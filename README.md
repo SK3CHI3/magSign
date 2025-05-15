@@ -10,7 +10,7 @@ A modern, responsive authentication system built with React and Node.js, featuri
   - Username-based registration and login
   - JWT-based authentication
   - Secure password hashing using bcrypt
-  - Form validation with real-time feedback
+  - Form validation with real-time feedback 
 .
 - **Interactive UI**
   - Smooth transitions and animations using Rive
