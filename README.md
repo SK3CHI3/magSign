@@ -24,7 +24,7 @@ A modern, responsive authentication system built with React and Node.js, featuri
   - Input validation and sanitization
   - Secure session management 
 
-![Dark Mode](./README%20files/dark_mode.gif)
+![Dark Mode](./README%20files/dark_mode.gif) 
 
 ## Technology Stack
 
